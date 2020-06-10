@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { MovieCard } from './movieCard';
+import config from '../config';
 
 const SearchMovies = () => {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
 
-  const searchMovies = async e => {
+  const searchMovies = async (e) => {
+    const { api_key } = config;
     e.preventDefault();
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=e03da57cdb6ac698fe2f86dd70dd02d6&language=en-US&query=${query}&page=1&include_adult=false`;
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=${query}&page=1&include_adult=false`;
     try {
       const res = await fetch(url);
       const data = await res.json();
@@ -17,7 +19,7 @@ const SearchMovies = () => {
     }
   };
 
-  const onSearchChange = e => {
+  const onSearchChange = (e) => {
     setQuery(e.target.value);
   };
 
@@ -28,7 +30,7 @@ const SearchMovies = () => {
           Movie Name
         </label>
         <input
-          aria-label="Search for blockbuster movies"
+          aria-label='Search for blockbuster movies'
           type='text'
           className='input'
           name='query'
@@ -42,8 +44,8 @@ const SearchMovies = () => {
       </form>
       <div className='card-list'>
         {movies
-          .filter(movie => movie.poster_path)
-          .map(movie => (
+          .filter((movie) => movie.poster_path)
+          .map((movie) => (
             <MovieCard movie={movie} key={movie.id} />
           ))}
       </div>
