@@ -1,6 +1,6 @@
 {
   "homepage": "https://terieyenike.github.io/themoviedb",
-  "name": "TheMovieDB",
+  "name": "themoviedb",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
